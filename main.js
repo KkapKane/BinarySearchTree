@@ -16,6 +16,31 @@ class Tree {
         this.root = this.buildTree(this.array,0,this.array.length -1)
         
     }
+
+    leveOrder(root){
+        const result = [];
+        const queue = [];
+        queue.push(this.root)
+        while(queue.length){
+            const levelSize = queue.length
+            const currentLevel = [];
+            for(let i = 0; i< levelSize ; i++){
+                const current = queue.shift();
+                currentLevel.push(current.data)
+                if(current.left){
+                    queue.push(current.left)
+
+                }
+                if(current.right){
+                    queue.push(current.right)
+                }
+
+            }  
+            result.push(currentLevel) 
+        }
+
+        return result;
+    }
    
     buildTree(array, start, end) {
         
@@ -151,6 +176,7 @@ tree1.delete(345)
 console.log(tree1.min(tree1.buildTree(testArr, 0, testArr.length)))
 
 
+console.log(tree1.leveOrder())
 
 
 
